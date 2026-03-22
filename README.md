@@ -1,6 +1,4 @@
 # LoRA-Fine-Tuning
-<img width="787" height="582" alt="image" src="https://github.com/user-attachments/assets/cc2839df-4b5a-497f-a368-addedf7b4723" />
-Great topic, Bhaiya! LoRA is one of the most elegant ideas in modern AI. Let me walk you through it the way you'd explain it in a session — from the *why* to the *math* to the *how*, with visuals at each step.
 
 ---
 
@@ -11,6 +9,9 @@ Imagine you want to fine-tune **Llama 3 (8B parameters)**. Full fine-tuning mean
 LoRA asks a brilliant question: **do we really need to update all those parameters?**
 
 The answer, backed by research, is **no** — because when models adapt to a new task, the *actual change* in weight matrices tends to live in a **very low-rank space**.---
+
+<img width="736" height="375" alt="image" src="https://github.com/user-attachments/assets/595c4653-4e15-4a56-a398-e2fc0f9fa097" />
+
 
 ## The core idea — low-rank decomposition (the math)
 
@@ -31,13 +32,21 @@ The **forward pass** during inference becomes:
 
 Where `α` is a scaling hyperparameter (controls how much the adapter influences the output).---
 
+<img width="752" height="440" alt="image" src="https://github.com/user-attachments/assets/13993ea8-e726-48ee-b100-fac4c9081bba" />
+
+
 ## Where exactly are the LoRA adapters inserted?
 
 LoRA adapters are typically inserted into the **attention layers** of the transformer — specifically into the `Q` (Query) and `V` (Value) projection matrices. Some implementations also target `K`, the output projection, and even the MLP layers. The original W stays completely **frozen**.---
 
+<img width="732" height="525" alt="image" src="https://github.com/user-attachments/assets/67f33221-d01f-4813-9fa4-ed92b942d9e9" />
+
+
 ## The LoRA training process — step by step
 
 Here's the complete workflow from start to deployment:---
+
+<img width="787" height="582" alt="image" src="https://github.com/user-attachments/assets/cc2839df-4b5a-497f-a368-addedf7b4723" />
 
 ## When do you actually use LoRA?
 
@@ -79,4 +88,3 @@ Once you understand base LoRA, these variants are easy to grasp:
 
 ---
 
-Want me to go deeper on any specific part? For example — the QLoRA math and NF4 quantization, how to actually implement this in code with HuggingFace PEFT, or the benchmark comparisons across different rank values?
